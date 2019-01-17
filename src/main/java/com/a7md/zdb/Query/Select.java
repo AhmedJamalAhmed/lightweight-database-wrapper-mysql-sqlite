@@ -8,8 +8,6 @@ import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._Decimal;
 import com.a7md.zdb.ZTable;
 import com.a7md.zdb.utility.ZSystemError;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class Select {
     }
 
 
-    public static <U extends ZSqlRow> ArrayList<U> list(ZTable<U> table, @Nullable ZWhere where) throws Exception {
+    public static <U extends ZSqlRow> ArrayList<U> list(ZTable<U> table, ZWhere where) throws Exception {
         String sql = "SELECT * FROM " + table.TableName;
         if (where != null) {
             sql += where.get();
@@ -41,7 +39,7 @@ public class Select {
     }
 
     @SuppressWarnings("unchecked")
-    public static <U extends ZSqlRow> U row(@NotNull Equal where) throws Exception {
+    public static <U extends ZSqlRow> U row(Equal where) throws Exception {
         ArrayList<U> list = list(where.col.mtable, new ZWhere(where));
         if (list.size() != 1) {
             throw new ZSystemError("query of " + new ZWhere(where).get() + " return " + list.size() + " values");
@@ -50,7 +48,7 @@ public class Select {
         }
     }
 
-    public static void query(JoinHandler bind, @Nullable ZWhere where) throws Exception {
+    public static void query(JoinHandler bind, ZWhere where) throws Exception {
         String sql = build_join(bind, "*") + (where != null ? where.get() : "");
         bind.first_col.mtable.db.getResult(sql, bind);
     }
@@ -79,7 +77,7 @@ public class Select {
         return sum(col, new ZWhere(where));
     }
 
-    static public BigDecimal sum(_Decimal col, @Nullable ZWhere where) throws Exception {
+    static public BigDecimal sum(_Decimal col, ZWhere where) throws Exception {
         _Decimal decimal = new _Decimal<>("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
