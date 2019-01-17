@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.a7md.zdb'
-version '1.0-SNAPSHOT'
+version 'V2'
 
 sourceCompatibility = 1.8
 
