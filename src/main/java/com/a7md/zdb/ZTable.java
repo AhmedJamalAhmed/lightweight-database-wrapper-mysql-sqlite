@@ -11,6 +11,8 @@ import com.a7md.zdb.utility.ZSystemError;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 abstract public class ZTable<Item extends ZSqlRow> {
 
@@ -39,7 +41,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
             cols[i].setMtable(this);
             i++;
         }
-        this.cols = otherCols;
+        this.cols = cols;
         db.registerTable(this, cols);
     }
 
@@ -49,7 +51,6 @@ abstract public class ZTable<Item extends ZSqlRow> {
 
     public Item fromResultSet(ResultSet res) throws Exception {
         Item newElement = createNewElement();
-        ID.assign(newElement, res); ///must assign the id
         SqlCol<Item, ?>[] cols = getCols();
         for (SqlCol<Item, ?> col : cols) {
             col.assign(newElement, res);
@@ -59,11 +60,16 @@ abstract public class ZTable<Item extends ZSqlRow> {
 
     public abstract Item createNewElement();
 
-    public Key[] toRow(Item item) {
+    public ArrayList<Key> toRow(Item item, boolean withId) {
         SqlCol<Item, ?>[] cols = getCols();
-        Key[] keys = new Key[cols.length];
-        for (int i = 0; i < keys.length; i++) {
-            keys[i] = cols[i].toDbKey(item);
+        ArrayList<Key> keys = new ArrayList<>();
+        if (withId) {
+            keys.addAll(Arrays.stream(cols).map(s -> s.toDbKey(item)).collect(Collectors.toList()));
+        } else {
+            keys.addAll(Arrays.stream(cols)
+                    .filter(s -> s != ID)
+                    .map(s -> s.toDbKey(item))
+                    .collect(Collectors.toList()));
         }
         return keys;
     }
@@ -74,21 +80,20 @@ abstract public class ZTable<Item extends ZSqlRow> {
      * @throws Exception
      */
     public Item insert(Item item) throws Exception {
-        Key[] keys = toRow(item);
-        for (Key key : keys) {
-            if (key.ColName.equals(getID().name)) {
-                throw new ZSystemError("asdask aksjdklasjkldjaskldj to delete on release");
-            }
-        }
         int id = item.getId();
-        boolean selectexists = ID.exist(id);
-        if (selectexists) {
-            throw new ZSystemError("موجود من قبل");
+        ArrayList<Key> keys;
+        if (id >= 1) {
+            if (ID.exist(id)) {
+                throw new ZSystemError("موجود من قبل");
+            }
+            keys = toRow(item, true);
         } else {
-            int i = db.AddRow(this, keys);
-            item.setId(i);
-            return item;
+            keys = toRow(item, false);
         }
+
+        int i = db.AddRow(this, keys);
+        item.setId(i);
+        return item;
     }
 
     public boolean addOrEdit(Item item) throws Throwable {
@@ -99,7 +104,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     final public int update(Item item) throws Exception {
-        Key[] keys = toRow(item);
+        ArrayList<Key> keys = toRow(item, true);
         int id = item.getId();
         boolean selectexists = ID.exist(id);
         if (selectexists) {

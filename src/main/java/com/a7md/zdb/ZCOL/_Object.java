@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class _Object<E extends ZSqlRow, Value extends GSonObject> extends SqlCol<E, Value> {
+public class _Object<E extends ZSqlRow, Value> extends SqlCol<E, Value> {
     final public static Gson gsonBuilder = new GsonBuilder().create();
 
     final int size;
@@ -35,7 +35,7 @@ public class _Object<E extends ZSqlRow, Value extends GSonObject> extends SqlCol
 
     @Override
     final public Key toDbKey(E item) {
-        Value value = mProperty.getValue(item);
+        Value value = property.getValue(item);
         return new Key<>(name, gsonBuilder.toJson(value));
     }
 

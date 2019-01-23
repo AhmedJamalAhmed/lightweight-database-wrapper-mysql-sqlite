@@ -22,8 +22,8 @@ public abstract class ZNamedTable<E extends ZItem> extends ZTable<E> {
     @Override
     protected void register(SqlCol... othercols) {
         ArrayList<SqlCol> sqlCols = new ArrayList<>(Arrays.asList(othercols));
-        sqlCols.add(0, name);
-        sqlCols.add(2, last_updated);
+        sqlCols.add(name);
+        sqlCols.add(last_updated);
         super.register(sqlCols.toArray(new SqlCol[0]));
     }
 }

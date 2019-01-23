@@ -35,7 +35,7 @@ public class _EnumVal<E extends ZSqlRow, enm extends Enum<enm>> extends SqlCol<E
 
     @Override
     public Key toDbKey(E e) {
-        enm value = mProperty.getValue(e);
+        enm value = property.getValue(e);
         return new Key<>(name, value.name());
     }
 }

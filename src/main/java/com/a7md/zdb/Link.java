@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Link {
 
@@ -55,22 +57,23 @@ public abstract class Link {
         update(SQL);
     }
 
-    public int AddRow(ZTable table, Key... RowArray) throws SQLException {
+    public int AddRow(ZTable table, ArrayList<Key> RowArray) throws SQLException {
         String SQl = "INSERT INTO " + table.TableName + "(";
         String Values = " VALUES ( ";
-        for (int i = 0; i < RowArray.length; i++) {
-            Key get = RowArray[i];
+
+        for (int i = 0; i < RowArray.size(); i++) {
+            Key get = RowArray.get(i);
             SQl += get.ColName;
             Values += "?";
-            if (i + 1 != RowArray.length) {
+            if (i + 1 != RowArray.size()) {
                 SQl += ",";
                 Values += ",";
             }
         }
         SQl += ")" + Values + ")";
         try (PreparedStatement PS = getConnection().prepareStatement(SQl, Statement.RETURN_GENERATED_KEYS)) {
-            for (int i = 0; i < RowArray.length; i++) {
-                Key key = RowArray[i];
+            for (int i = 0; i < RowArray.size(); i++) {
+                Key key = RowArray.get(i);
                 PS.setObject(i + 1, key.getValue());
             }
             int RowsAffected = PS.executeUpdate();
@@ -85,21 +88,21 @@ public abstract class Link {
         return -1;
     }
 
-    public boolean UpdateRow(Equal id, Key... RowArray) throws SQLException {
+    public boolean UpdateRow(Equal id, List<Key> RowArray) throws SQLException {
         String SQl = "UPDATE " + id.col.mtable.TableName + " SET ";
-        for (int i = 0; i < RowArray.length; i++) {
-            SQl += RowArray[i].ColName;
+        for (int i = 0; i < RowArray.size(); i++) {
+            SQl += RowArray.get(i).ColName;
             SQl += "=";
             SQl += "?";
-            if (i + 1 != RowArray.length) {
+            if (i + 1 != RowArray.size()) {
                 SQl += ",";
             }
         }
         SQl += new ZWhere(id).get();
         int RowsAffected;
         try (PreparedStatement PS = getConnection().prepareStatement(SQl)) {
-            for (int i = 0; i < RowArray.length; i++) {
-                Key key = RowArray[i];
+            for (int i = 0; i < RowArray.size(); i++) {
+                Key key = RowArray.get(i);
                 PS.setObject(i + 1, key.getValue());
             }
             RowsAffected = PS.executeUpdate();

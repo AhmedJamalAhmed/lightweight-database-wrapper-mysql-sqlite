@@ -32,6 +32,7 @@ public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
 
     @Override
     final public Integer get(ResultSet resultSet) throws SQLException {
+
         return resultSet.getInt(name);
     }
 }

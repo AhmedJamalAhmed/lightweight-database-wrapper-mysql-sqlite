@@ -34,7 +34,7 @@ public class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
 
     @Override
     public Key toDbKey(E i) {
-        LocalDateTime ite = mProperty.getValue(i);
+        LocalDateTime ite = property.getValue(i);
         if (ite == null) ite = LocalDateTime.now(); /// todo
         return new Key<>(name, Timestamp.valueOf(ite));
     }
