@@ -5,7 +5,7 @@ import com.a7md.zdb.RowTypes.types.ZNamedRow;
 
 import java.time.LocalDateTime;
 
-abstract public class GSonRow<t extends GSonObject> implements ZNamedRow, last_updated_time {
+abstract public class GSonRow<t extends GSonObject> implements ZNamedRow, LastModified {
 
     private int id;
     private String name;
@@ -43,7 +43,7 @@ abstract public class GSonRow<t extends GSonObject> implements ZNamedRow, last_u
     }
 
     @Override
-    public LocalDateTime getLastUpdated() {
+    public LocalDateTime getLastModified() {
         return lastUpdated;
     }
 

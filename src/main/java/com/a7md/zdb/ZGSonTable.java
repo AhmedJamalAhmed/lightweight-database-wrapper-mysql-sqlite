@@ -15,7 +15,7 @@ public abstract class ZGSonTable<sex extends GSonObject, Row extends GSonRow> ex
 
     public final _Object<Row, sex> data;
     public final _String<Row> name = new _String<>("name", 100, new WritableProperty<>("الاسم", Row::getName, Row::setName));
-    public final _TimeStamp<Row> last_updated = new _TimeStamp<>("last_updated", new WritableProperty<>("تاريخ اخر تعديل", Row::getLastUpdated, Row::setLastUpdated));
+    public final _TimeStamp<Row> last_updated = new _TimeStamp<>("last_updated", new WritableProperty<>("تاريخ اخر تعديل", Row::getLastModified, Row::setLastUpdated));
 
     public ZGSonTable(Link link, String TName, Class<sex> aClass) {
         super(link, TName, new _ID_AI<>("id"));

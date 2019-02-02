@@ -26,4 +26,5 @@ public abstract class ZNamedTable<E extends ZItem> extends ZTable<E> {
         sqlCols.add(last_updated);
         super.register(sqlCols.toArray(new SqlCol[0]));
     }
+
 }

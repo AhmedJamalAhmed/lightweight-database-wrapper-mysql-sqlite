@@ -106,6 +106,15 @@ public class JDouble {
         return sum;
     }
 
+    public static <E> BigDecimal sum_list(List<E> list, Function<E, BigDecimal> getter) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (E item : list) {
+            BigDecimal value = getter.apply(item);
+            sum = sum.add(value);
+        }
+        return sum;
+    }
+
     public static String ShowValue(BigDecimal value) {
         value = value.setScale(UserShowScale, RoundingType);
         int signum = value.signum();

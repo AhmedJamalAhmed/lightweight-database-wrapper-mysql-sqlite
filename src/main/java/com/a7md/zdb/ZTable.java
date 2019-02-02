@@ -96,14 +96,14 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return item;
     }
 
-    public boolean addOrEdit(Item item) throws Throwable {
+    public boolean insertOrUpdate(Item item) throws Throwable {
         boolean selectexists = ID.exist(item.getId());
         if (selectexists) update(item);
         else insert(item);
         return !selectexists;
     }
 
-    final public int update(Item item) throws Exception {
+    public int update(Item item) throws Exception {
         ArrayList<Key> keys = toRow(item, true);
         int id = item.getId();
         boolean selectexists = ID.exist(id);

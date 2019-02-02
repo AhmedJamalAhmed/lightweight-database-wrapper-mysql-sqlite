@@ -11,8 +11,7 @@ public class SQLiteHelper extends Link {
 
     final private Connection connection;
     private String FilePath;
-
-    public SQLiteHelper(String FilePath, DBErrorHandler dbErrorHandler) throws ZSystemError {
+    public SQLiteHelper(String FilePath, DBErrorHandler dbErrorHandler) {
         super(dbErrorHandler);
         Connection ctin = null;
         try {
