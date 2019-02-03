@@ -3,19 +3,13 @@ package com.a7md.zdb.utility;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class IO {
 
     static public String ReadFileFromRecourse(String FileName, Object FileClass) {
         String Content = "";
-        try {
-            Content = ReadFileFromRecourse(new InputStreamReader(FileClass.getClass().getResourceAsStream(FileName), "UTF-8"));
-        } catch (UnsupportedEncodingException ex) {
-            if (Content.equals("")) {
-                Content = ReadFileFromRecourse(new InputStreamReader(FileClass.getClass().getResourceAsStream(FileName)));
-            }
-        }
+        Content = ReadFileFromRecourse(new InputStreamReader(FileClass.getClass().getResourceAsStream(FileName), StandardCharsets.UTF_8));
         return Content;
     }
 

@@ -12,10 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class _Object<E extends ZSqlRow, Value> extends SqlCol<E, Value> {
-    final public static Gson gsonBuilder = new GsonBuilder().create();
+    private final static Gson gsonBuilder = new GsonBuilder().create();
 
-    final int size;
-    final Class<Value> aClass;
+    private final int size;
+    private final Class<Value> aClass;
 
     public _Object(String Name, int size, Class<Value> aClass, WritableProperty<E, Value> property) {
         super(Name, property);
