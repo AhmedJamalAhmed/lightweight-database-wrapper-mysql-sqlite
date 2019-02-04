@@ -13,7 +13,7 @@ import java.util.Arrays;
 public abstract class ZNamedTable<E extends ZItem> extends ZTable<E> {
 
     final _TimeStamp<E> last_updated = new _TimeStamp<>("last_updated", new WritableProperty<>("تاريخ اخر تعديل", E::getLastModified, E::setLastModified));
-    final _String<E> name = new _String<>("name", 100, new WritableProperty<>("الاسم", E::getName, E::setName));
+    final _String<E> name = new _String<>("name", 250, new WritableProperty<>("الاسم", E::getName, E::setName));
 
     public ZNamedTable(Link link, String TName, _ID_AI<E> ID) {
         super(link, TName, ID);
