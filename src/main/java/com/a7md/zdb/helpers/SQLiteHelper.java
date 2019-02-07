@@ -1,6 +1,6 @@
-package com.a7md.zdb;
+package com.a7md.zdb.helpers;
 
-import com.a7md.zdb.utility.ZSystemError;
+import com.a7md.zdb.DBErrorHandler;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,6 +11,7 @@ public class SQLiteHelper extends Link {
 
     final private Connection connection;
     private String FilePath;
+
     public SQLiteHelper(String FilePath, DBErrorHandler dbErrorHandler) {
         super(dbErrorHandler);
         Connection ctin = null;
@@ -19,9 +20,7 @@ public class SQLiteHelper extends Link {
             Class.forName("org.sqlite.JDBC");
             ctin = DriverManager.getConnection("jdbc:sqlite:" + this.FilePath);
         } catch (Exception e) {
-            dbErrorHandler.handle_error(new ZSystemError("خطأ بالاتصال بقاعدة البيانات",
-                    "حدث خطأ أثناء الاتصال بقاعدة البيانات يرجى التأكد من ان قاعدة البيانات موجودة على جهاز الكمبيوتر" +
-                            "\n او الاتصال بالدعم الفني في حالة عدم القدرة على إصلاح المشكلة "));
+            dbErrorHandler.handle_error(e);
         }
         this.connection = ctin;
     }

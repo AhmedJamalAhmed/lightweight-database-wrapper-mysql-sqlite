@@ -1,4 +1,4 @@
-package com.a7md.zdb.RowTypes.types;
+package com.a7md.zdb;
 
 public interface ZSqlRow {
     int getId();

@@ -1,7 +1,7 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.Link;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
+import com.a7md.zdb.ZSqlRow;
+import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.properties.WritableProperty;
 
 public abstract class _Custom<E extends ZSqlRow, X> extends SqlCol<E, X> {

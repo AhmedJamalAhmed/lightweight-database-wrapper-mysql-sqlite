@@ -1,7 +1,7 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.Link;
-import com.a7md.zdb.MysqlHelper;
+import com.a7md.zdb.helpers.Link;
+import com.a7md.zdb.helpers.MysqlHelper;
 import com.a7md.zdb.ZTable;
 
 import java.sql.SQLException;

@@ -3,10 +3,10 @@ package com.a7md.zdb;
 import com.a7md.zdb.Query.Select;
 import com.a7md.zdb.Query.ZQ.Condition;
 import com.a7md.zdb.Query.ZQ.ZWhere;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
 import com.a7md.zdb.ZCOL.Key;
 import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._ID_AI;
+import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.utility.ZSystemError;
 
 import java.sql.ResultSet;
@@ -84,7 +84,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
         ArrayList<Key> keys;
         if (id >= 1) {
             if (ID.exist(id)) {
-                throw new ZSystemError("موجود من قبل");
+                throw new ZSystemError("this item is existed");
             }
             keys = toRow(item, true);
         } else {
@@ -111,7 +111,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
             db.UpdateRow(ID.equal(id), keys);
             return id;
         } else {
-            throw new ZSystemError("غير موجود");
+            throw new ZSystemError("not exist");
         }
     }
 

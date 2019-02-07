@@ -1,9 +1,9 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.Link;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.Query.ZQ.Like;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
+import com.a7md.zdb.ZSqlRow;
+import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.properties.WritableProperty;
 
 import java.sql.ResultSet;

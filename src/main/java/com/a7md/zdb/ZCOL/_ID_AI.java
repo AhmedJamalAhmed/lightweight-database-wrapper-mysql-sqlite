@@ -1,9 +1,9 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.Link;
-import com.a7md.zdb.MysqlHelper;
 import com.a7md.zdb.Query.ZQ.Equal;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
+import com.a7md.zdb.ZSqlRow;
+import com.a7md.zdb.helpers.Link;
+import com.a7md.zdb.helpers.MysqlHelper;
 import com.a7md.zdb.properties.WritableProperty;
 
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
 
     public _ID_AI(String name) {
-        super(name, new WritableProperty<>("المعرف", E::getId, E::setId));
+        super(name, new WritableProperty<>("#", E::getId, E::setId));
     }
 
     @Override

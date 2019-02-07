@@ -1,12 +1,14 @@
-package com.a7md.zdb;
+package com.a7md.zdb.helpers;
 
+import com.a7md.zdb.DBErrorHandler;
 import com.a7md.zdb.Query.JoinHandler;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.Query.ZQ.ZWhere;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
 import com.a7md.zdb.ZCOL.CreateTable;
 import com.a7md.zdb.ZCOL.Key;
 import com.a7md.zdb.ZCOL.SqlCol;
+import com.a7md.zdb.ZSqlRow;
+import com.a7md.zdb.ZTable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

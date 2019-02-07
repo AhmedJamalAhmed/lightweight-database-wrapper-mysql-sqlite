@@ -3,9 +3,9 @@ package com.a7md.zdb.Query;
 import com.a7md.zdb.Query.ZQ.Condition;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.Query.ZQ.ZWhere;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
 import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._Decimal;
+import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.ZTable;
 import com.a7md.zdb.utility.ZSystemError;
 

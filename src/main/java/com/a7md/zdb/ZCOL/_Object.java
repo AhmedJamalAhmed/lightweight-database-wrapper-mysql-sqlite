@@ -1,9 +1,9 @@
 package com.a7md.zdb.ZCOL;
 
 import com.a7md.zdb.GSonObject;
-import com.a7md.zdb.Link;
 import com.a7md.zdb.Query.ZQ.Equal;
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
+import com.a7md.zdb.ZSqlRow;
+import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.properties.WritableProperty;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

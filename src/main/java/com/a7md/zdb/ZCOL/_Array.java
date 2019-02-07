@@ -1,6 +1,6 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.RowTypes.types.ZSqlRow;
+import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.properties.WritableProperty;
 
 public class _Array<E extends ZSqlRow> extends _Object<E, String[]> {

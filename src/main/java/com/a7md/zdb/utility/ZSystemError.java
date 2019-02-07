@@ -15,7 +15,7 @@ public class ZSystemError extends Exception {
 
     public String getTitle() {
         if (Title == null) {
-            return "حدث خطأ";
+            return "error";
         }
         return Title;
     }

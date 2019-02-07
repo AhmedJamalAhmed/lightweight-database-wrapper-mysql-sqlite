@@ -1,8 +1,8 @@
 package com.a7md.zdb.utility;
 
-import com.a7md.zdb.utility.functions.Value;
+import java.util.function.Supplier;
 
-public class ObjectTitle<Obj> implements Value<Obj> {
+public class ObjectTitle<Obj> implements Supplier<Obj> {
     final String title;
     final Obj obj;
 
