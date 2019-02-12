@@ -11,8 +11,12 @@ import java.sql.SQLException;
 
 public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
 
-    public _ID_AI(String name) {
-        super(name, new WritableProperty<>("#", E::getId, E::setId));
+    public _ID_AI() {
+        this("id");
+    }
+
+    public _ID_AI(String customName) {
+        super(customName, new WritableProperty<>("#", E::getId, E::setId));
     }
 
     @Override

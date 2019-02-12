@@ -121,12 +121,10 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     final public void delete(Item item) throws Exception {
-        validate_delete(item.getId());
-        db.DeleteRow(ID.equal(item.getId()));
+        delete(item.getId());
     }
 
     protected void validate_delete(int id) throws Exception {
-
     }
 
     public final _ID_AI getID() {

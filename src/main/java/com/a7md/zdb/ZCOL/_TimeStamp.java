@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
+public abstract class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
 
-    public _TimeStamp(String Name, WritableProperty<E, LocalDateTime> property) {
+    _TimeStamp(String Name, WritableProperty<E, LocalDateTime> property) {
         super(Name, property);
     }
 

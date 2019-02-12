@@ -147,4 +147,17 @@ public class Select {
                 }
         );
     }
+
+
+    static public <V> ArrayList<V> distinctValues(SqlCol<?, V> col) throws Exception {
+        return col.mtable.db.getResult("SELECT DISTINCT " + col.name + " from " + col.mtable.TableName,
+                r -> {
+                    ArrayList<V> list = new ArrayList<>();
+                    while (r.next()) {
+                        list.add(col.get(r));
+                    }
+                    return list;
+                }
+        );
+    }
 }

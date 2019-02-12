@@ -22,6 +22,6 @@ public class ObjectTitle<Obj> implements Supplier<Obj> {
 
     @Override
     public String toString() {
-        return " -> " + this.title;
+        return title;
     }
 }
