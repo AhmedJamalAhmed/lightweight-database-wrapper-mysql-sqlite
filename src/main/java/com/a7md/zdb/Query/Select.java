@@ -148,6 +148,19 @@ public class Select {
         );
     }
 
+    static public boolean exist(ZTable table, ZWhere zWhere) throws Exception {
+        return table.db.getResult("SELECT EXISTS(SELECT 1 FROM " + table.TableName +
+                        zWhere.get() + ")",
+                r -> {
+                    if (r.next()) {
+                        return r.getInt(1) == 1;
+                    } else {
+                        return false;
+                    }
+                }
+        );
+    }
+
 
     static public <V> ArrayList<V> distinctValues(SqlCol<?, V> col) throws Exception {
         return col.mtable.db.getResult("SELECT DISTINCT " + col.name + " from " + col.mtable.TableName,

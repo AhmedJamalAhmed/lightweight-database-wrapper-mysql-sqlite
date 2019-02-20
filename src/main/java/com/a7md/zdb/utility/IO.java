@@ -1,11 +1,18 @@
 package com.a7md.zdb.utility;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 public class IO {
+    public static void writeFile(File file, String text) throws IOException {
+        FileWriter myWriter = new FileWriter(file);
+        myWriter.write(text);
+        myWriter.close();
+    }
 
     static public String ReadFileFromRecourse(String FileName, Object FileClass) {
         String Content = "";

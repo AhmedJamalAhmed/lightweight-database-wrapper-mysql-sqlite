@@ -8,7 +8,7 @@ public interface JDateTime {
 
     String db_time_stamp_format = "yyyy-MM-dd HH:mm:ss.S";
     DateTimeFormatter db_time_stamp_formatter = DateTimeFormatter.ofPattern(db_time_stamp_format);
-    String time_format = "(hh:mm:ss a)";
+    String time_format = "hh:mm a";
     DateTimeFormatter time_formatter = DateTimeFormatter.ofPattern(time_format);
     String date_format = "MM/dd"; // yyyy/MM/dd
     DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern(date_format);

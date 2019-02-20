@@ -27,7 +27,7 @@ public class SQLiteHelper extends Link {
 
     @Override
     public Connection getConnection() {
-        return connection;
+        return this.connection;
     }
 
     @Override

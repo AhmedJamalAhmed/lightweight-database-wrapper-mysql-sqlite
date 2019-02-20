@@ -14,12 +14,11 @@ public class WritableProperty<E, V> extends Property<E, V> {
         this.writer = writer;
     }
 
-    public void setValue(E e, V v) throws Exception {
-        validate(v);
+    public void setValue(E e, V v) {
         writer.set(e, v);
     }
 
-    protected void validate(V v) throws Exception {
+    public void validate(V v) throws Exception {
 
     }
 }

@@ -27,6 +27,7 @@ public class MysqlHelper extends Link {
             dbErrorHandler.handle_error(e);
             con = null;
         }
+
         this.connection = con;
     }
 

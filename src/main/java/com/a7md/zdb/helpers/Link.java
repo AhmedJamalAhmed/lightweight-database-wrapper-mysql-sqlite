@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class Link {
 
@@ -24,6 +25,25 @@ public abstract class Link {
 
     public Link(DBErrorHandler errorHandler) {
         this.errorHandler = errorHandler;
+    }
+
+    public void createTransaction(DBTransaction dbTransaction) {
+        try {
+            Connection connection = getConnection();
+            connection.setAutoCommit(false);
+            try {
+                dbTransaction.run();
+            } catch (Throwable e) {
+                e.printStackTrace();
+                connection.rollback();
+            } finally {
+                connection.commit();
+                connection.setAutoCommit(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            dbTransaction.accept(e);
+        }
     }
 
     final public <E extends ZSqlRow> void registerTable(ZTable<E> table, SqlCol<E, ?>[] cols) {
@@ -51,7 +71,10 @@ public abstract class Link {
     abstract public void DeleteDbIfExists() throws Exception;
 
     public int update(String SQL) throws SQLException {
-        return getConnection().createStatement().executeUpdate(SQL);
+        Statement statement = getConnection().createStatement();
+        int i = statement.executeUpdate(SQL);
+        statement.close();
+        return i;
     }
 
     public void DeleteRow(Equal id) throws SQLException {
@@ -130,26 +153,16 @@ public abstract class Link {
         }
     }
 
+    public void clearTable(ZTable zTable) throws SQLException {
+        String SQL = "DELETE FROM " + zTable.TableName + ";";
+        update(SQL);
+    }
+
     public interface ResultHandler<Return> {
         Return handle(ResultSet r) throws Exception;
     }
 
-    public abstract static class TransactionHandler {
-
-        public TransactionHandler(Link link) throws Throwable {
-            Connection connection = link.getConnection();
-            connection.setAutoCommit(false);
-            try {
-                transaction();
-                connection.commit();
-            } catch (Throwable e) {
-                connection.rollback();
-                throw e;
-            } finally {
-                connection.setAutoCommit(true);
-            }
-        }
-
-        abstract public void transaction() throws Throwable;
+    public interface DBTransaction extends Consumer<Throwable> {
+        void run() throws Throwable;
     }
 }

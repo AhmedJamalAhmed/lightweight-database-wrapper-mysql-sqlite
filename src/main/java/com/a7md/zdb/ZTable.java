@@ -10,6 +10,7 @@ import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.utility.ZSystemError;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -155,4 +156,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return Select.list(this, where);
     }
 
+    public void clearTable() throws SQLException {
+        this.db.clearTable(this);
+    }
 }

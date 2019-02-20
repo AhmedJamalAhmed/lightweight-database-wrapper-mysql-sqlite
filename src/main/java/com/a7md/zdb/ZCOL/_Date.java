@@ -9,17 +9,17 @@ import com.a7md.zdb.utility.JDateTime;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
+public class _Date<E extends ZSqlRow> extends SqlCol<E, LocalDate> {
 
-    public _TimeStamp(String Name, WritableProperty<E, LocalDateTime> property) {
+    public _Date(String Name, WritableProperty<E, LocalDate> property) {
         super(Name, property);
     }
 
     @Override
-    public Equal equal(LocalDateTime val) {
-        return new Equal(this, JDateTime.DB_TIMESTAMP(val));
+    public Equal equal(LocalDate val) {
+        return new Equal(this, JDateTime.DB_TIMESTAMP(val.atStartOfDay()));
     }
 
     @Override
@@ -28,14 +28,14 @@ public class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
     }
 
     @Override
-    public LocalDateTime get(ResultSet resultSet) throws SQLException {
-        return resultSet.getTimestamp(name).toLocalDateTime();
+    public LocalDate get(ResultSet resultSet) throws SQLException {
+        return resultSet.getTimestamp(name).toLocalDateTime().toLocalDate();
     }
 
     @Override
     public Key toDbKey(E i) {
-        LocalDateTime ite = property.getValue(i);
-        if (ite == null) ite = LocalDateTime.now(); /// todo
-        return new Key<>(name, Timestamp.valueOf(ite));
+        LocalDate ite = property.getValue(i);
+        if (ite == null) ite = LocalDate.now(); /// todo
+        return new Key<>(name, Timestamp.valueOf(ite.atStartOfDay()));
     }
 }
