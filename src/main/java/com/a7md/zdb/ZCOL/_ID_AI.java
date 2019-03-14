@@ -17,7 +17,7 @@ public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
     }
 
     public _ID_AI(String title) {
-        super(title, new WritableProperty<>("#", E::getId, E::setId));
+        super(title, new WritableProperty<>("المعرف", E::getId, E::setId));
     }
 
     @Override

@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 abstract public class ZTable<Item extends ZSqlRow> {
@@ -61,18 +62,10 @@ abstract public class ZTable<Item extends ZSqlRow> {
 
     public abstract Item createNewElement();
 
-    public ArrayList<Key> toRow(Item item, boolean withId) {
-        SqlCol<Item, ?>[] cols = getCols();
-        ArrayList<Key> keys = new ArrayList<>();
-        if (withId) {
-            keys.addAll(Arrays.stream(cols).map(s -> s.toDbKey(item)).collect(Collectors.toList()));
-        } else {
-            keys.addAll(Arrays.stream(cols)
-                    .filter(s -> s != ID)
-                    .map(s -> s.toDbKey(item))
-                    .collect(Collectors.toList()));
-        }
-        return keys;
+    public List<Key> toRow(Item item, boolean withId) {
+        return Arrays.stream(getCols()).
+                filter(f -> withId || f != ID)
+                .map(s -> s.toDbKey(item)).collect(Collectors.toList());
     }
 
     /**
@@ -82,7 +75,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
      */
     public Item insert(Item item) throws Exception {
         int id = item.getId();
-        ArrayList<Key> keys;
+        List<Key> keys;
         if (id >= 1) {
             if (ID.exist(id)) {
                 throw new ZSystemError("this item is existed");
@@ -105,7 +98,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public int update(Item item) throws Exception {
-        ArrayList<Key> keys = toRow(item, true);
+        List<Key> keys = toRow(item, true);
         int id = item.getId();
         boolean selectexists = ID.exist(id);
         if (selectexists) {
@@ -145,7 +138,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public ArrayList<Item> list(Condition... conditions) throws Exception {
-        return list(new ZWhere(conditions));
+        return list(new ZWhere(true, conditions));
     }
 
     public ArrayList<Item> all() throws Exception {
@@ -158,5 +151,15 @@ abstract public class ZTable<Item extends ZSqlRow> {
 
     public void clearTable() throws SQLException {
         this.db.clearTable(this);
+    }
+
+    public Item getItem(ZWhere installmentsRecorder) throws Exception {
+        return Select.row(this, installmentsRecorder);
+    }
+
+    public SqlCol<Item, ?>[] getFilterCols() {
+        return new SqlCol[]{
+                this.getID()
+        };
     }
 }

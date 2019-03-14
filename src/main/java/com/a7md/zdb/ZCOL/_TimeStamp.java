@@ -3,6 +3,7 @@ package com.a7md.zdb.ZCOL;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.helpers.Link;
+import com.a7md.zdb.helpers.MysqlHelper;
 import com.a7md.zdb.properties.WritableProperty;
 import com.a7md.zdb.utility.JDateTime;
 
@@ -34,8 +35,14 @@ public class _TimeStamp<E extends ZSqlRow> extends SqlCol<E, LocalDateTime> {
 
     @Override
     public Key toDbKey(E i) {
-        LocalDateTime ite = property.getValue(i);
-        if (ite == null) ite = LocalDateTime.now(); /// todo
-        return new Key<>(name, Timestamp.valueOf(ite));
+        if (mtable.db instanceof MysqlHelper) {
+            LocalDateTime ite = property.getValue(i);
+            if (ite == null) ite = LocalDateTime.now();
+            return new Key<>(name, Timestamp.valueOf(ite));
+        } else {
+            LocalDateTime ite = property.getValue(i);
+            if (ite == null) ite = LocalDateTime.now();
+            return new Key<>(name, Timestamp.valueOf(ite));
+        }
     }
 }

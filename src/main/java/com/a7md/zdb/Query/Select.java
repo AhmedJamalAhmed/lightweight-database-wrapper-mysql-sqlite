@@ -48,6 +48,15 @@ public class Select {
         }
     }
 
+    public static <U extends ZSqlRow> U row(ZTable<U> table, ZWhere where) throws Exception {
+        ArrayList<U> list = list(table, where);
+        if (list.size() != 1) {
+            throw new ZSystemError("query of " + where.get() + " return " + list.size() + " values");
+        } else {
+            return list.get(0);
+        }
+    }
+
     public static void query(JoinHandler bind, ZWhere where) throws Exception {
         String sql = build_join(bind, "*") + (where != null ? where.get() : "");
         bind.first_col.mtable.db.getResult(sql, bind);

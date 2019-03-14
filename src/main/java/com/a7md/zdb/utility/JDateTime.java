@@ -10,9 +10,8 @@ public interface JDateTime {
     DateTimeFormatter db_time_stamp_formatter = DateTimeFormatter.ofPattern(db_time_stamp_format);
     String time_format = "hh:mm a";
     DateTimeFormatter time_formatter = DateTimeFormatter.ofPattern(time_format);
-    String date_format = "MM/dd"; // yyyy/MM/dd
+    String date_format = "YYYY/MM/dd"; // yyyy/MM/dd
     DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern(date_format);
-
     String date_time_format = time_format + " | " + date_format;
     DateTimeFormatter date_time_formatter = DateTimeFormatter.ofPattern(date_time_format);
 
@@ -21,6 +20,7 @@ public interface JDateTime {
     }
 
     static String str_date_time(LocalDateTime value) {
+        if (value == null) return "غير محدد";
         return value.format(date_time_formatter);
     }
 

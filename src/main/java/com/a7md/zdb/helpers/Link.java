@@ -15,9 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public abstract class Link {
 
@@ -27,22 +25,17 @@ public abstract class Link {
         this.errorHandler = errorHandler;
     }
 
-    public void createTransaction(DBTransaction dbTransaction) {
+    public void createTransaction(DBTransaction dbTransaction) throws Throwable {
+        Connection connection = getConnection();
+        connection.setAutoCommit(false);
         try {
-            Connection connection = getConnection();
-            connection.setAutoCommit(false);
-            try {
-                dbTransaction.run();
-            } catch (Throwable e) {
-                e.printStackTrace();
-                connection.rollback();
-            } finally {
-                connection.commit();
-                connection.setAutoCommit(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            dbTransaction.accept(e);
+            dbTransaction.run();
+        } catch (Throwable e) {
+            connection.rollback();
+            throw e;
+        } finally {
+            connection.commit();
+            connection.setAutoCommit(true);
         }
     }
 
@@ -82,7 +75,7 @@ public abstract class Link {
         update(SQL);
     }
 
-    public int AddRow(ZTable table, ArrayList<Key> RowArray) throws SQLException {
+    public int AddRow(ZTable table, List<Key> RowArray) throws SQLException {
         String SQl = "INSERT INTO " + table.TableName + "(";
         String Values = " VALUES ( ";
 
@@ -162,7 +155,7 @@ public abstract class Link {
         Return handle(ResultSet r) throws Exception;
     }
 
-    public interface DBTransaction extends Consumer<Throwable> {
+    public interface DBTransaction {
         void run() throws Throwable;
     }
 }

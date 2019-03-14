@@ -15,10 +15,16 @@ public class ZWhere {
         conditions.add(cond);
     }
 
-    public ZWhere(Condition... conditions) {
+    public ZWhere(boolean combined, Condition... conditions) {
         this(conditions[0]);
-        for (int i = 1; i < conditions.length; i++) {
-            and(conditions[i]);
+        if (combined) {
+            for (int i = 1; i < conditions.length; i++) {
+                and(conditions[i]);
+            }
+        } else {
+            for (int i = 1; i < conditions.length; i++) {
+                or(conditions[i]);
+            }
         }
     }
 

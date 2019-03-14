@@ -1,6 +1,5 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.GSonObject;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.helpers.Link;
@@ -10,41 +9,46 @@ import com.google.gson.GsonBuilder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class _Object<E extends ZSqlRow, Value> extends SqlCol<E, Value> {
+public class _Object<E extends ZSqlRow, type> extends SqlCol<E, type> {
+
     private final static Gson gsonBuilder = new GsonBuilder().create();
-
     private final int size;
-    private final Class<Value> aClass;
 
-    public _Object(String Name, int size, Class<Value> aClass, WritableProperty<E, Value> property) {
+    public _Object(String Name, int size, WritableProperty<E, type> property) {
         super(Name, property);
         this.size = size;
-        this.aClass = aClass;
     }
 
     @Override
     protected void create(CreateTable CreateTable, Link link) {
-        CreateTable.first.add("`" + name + "` VARCHAR(" + 1024 + ")" + (not_null ? " NOT NULL" : ""));
+        CreateTable.first.add("`" + name + "` VARCHAR(" + size + ")" + (not_null ? " NOT NULL" : ""));
     }
 
     @Override
-    public Equal equal(Value val) {
-        return new Equal(this, gsonBuilder.toJson(val));
+    public Equal equal(type val) {
+        return new Equal(this, gsonBuilder.toJson(new AtomicReference<>(val), AtomicReference.class));
     }
 
     @Override
     final public Key toDbKey(E item) {
-        Value value = property.getValue(item);
-        return new Key<>(name, gsonBuilder.toJson(value));
+        type value = property.getValue(item);
+        return new Key<>(name, gsonBuilder.toJson(new AtomicReference<>(value), AtomicReference.class));
     }
 
-    public <c extends GSonObject> Key setData(c Value) {
+    public Key setData(AtomicReference<type> Value) {
         return new Key<>(name, gsonBuilder.toJson(Value));
     }
 
     @Override
-    final public Value get(ResultSet resultSet) throws SQLException {
-        return gsonBuilder.fromJson(resultSet.getString(this.name), aClass);
+    final public type get(ResultSet resultSet) throws SQLException {
+        AtomicReference atomicReference = gsonBuilder.fromJson(resultSet.getString(this.name), AtomicReference.class);
+        return (type) atomicReference.get();
+    }
+
+    public void assign(E e, ResultSet resultSet) throws Exception {
+        type v = get(resultSet);
+        property.setValue(e, v);
     }
 }

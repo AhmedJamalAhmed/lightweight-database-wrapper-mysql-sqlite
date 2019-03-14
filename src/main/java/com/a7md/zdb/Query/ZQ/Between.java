@@ -1,13 +1,18 @@
 package com.a7md.zdb.Query.ZQ;
 
 import com.a7md.zdb.ZCOL._TimeStamp;
+import com.a7md.zdb.helpers.MysqlHelper;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Between implements Condition {
-    final _TimeStamp mCol;
-    private String from;
-    private String to;
+    private final _TimeStamp mCol;
 
-    public Between(_TimeStamp mCol, String from, String to) {
+    final private LocalDateTime from;
+    final private LocalDateTime to;
+
+    public Between(_TimeStamp mCol, LocalDateTime from, LocalDateTime to) {
         this.mCol = mCol;
         this.from = from;
         this.to = to;
@@ -15,11 +20,18 @@ public class Between implements Condition {
 
     @Override
     public String getWherePiece() {
-        if (from != null && to != null)
-            return "timestamp(`" + mCol.mtable.TableName + "`.`" + mCol.name + "`) Between '" + from + "' and '" + to + "'";
-        else {
+        if (from == null || to == null)
             return null;
+        String val;
+        if (mCol.mtable.db instanceof MysqlHelper) {
+            val = "UNIX_TIMESTAMP(`" + mCol.mtable.TableName + "`.`" + mCol.name + "`) Between '" + from + "' and '" + to + "'";
+        } else {
+            Timestamp fromF = Timestamp.valueOf(from);
+            Timestamp toF = Timestamp.valueOf(to);
+            val = "`" + mCol.mtable.TableName + "`.`" + mCol.name + "` Between '" + toF.getTime() + "' and '" + fromF.getTime() + "'";
         }
+        System.out.println("between : " + val);
+        return val;
     }
 
 }
