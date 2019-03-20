@@ -5,6 +5,7 @@ import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.Query.ZQ.ZWhere;
 import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._Decimal;
+import com.a7md.zdb.ZCOL._Number;
 import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.ZTable;
 import com.a7md.zdb.utility.ZSystemError;
@@ -109,6 +110,25 @@ public class Select {
                 return decimal.get(r);
             } else {
                 return BigDecimal.ZERO;
+            }
+        });
+    }
+
+
+    static public long sum(_Number col, Equal where) throws Exception {
+        return sum(col, new ZWhere(where));
+    }
+
+    static public long sum(_Number col, ZWhere where) throws Exception {
+        _Number decimal = new _Number<>("sum(" + col.name + ")", null);
+        decimal.setMtable(col.mtable);
+        String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
+                + (where == null ? "" : where.get());
+        return col.mtable.db.getResult(sql, r -> {
+            if (r.next()) {
+                return decimal.get(r).longValue();
+            } else {
+                return 0L;
             }
         });
     }
