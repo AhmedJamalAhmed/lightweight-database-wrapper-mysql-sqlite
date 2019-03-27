@@ -37,7 +37,7 @@ public class Select {
             while (r.next()) {
                 list.add(table.fromResultSet(r));
             }
-            return new ArrayList<>(list);
+            return list;
         });
     }
 
