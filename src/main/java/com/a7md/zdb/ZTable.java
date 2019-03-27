@@ -2,7 +2,7 @@ package com.a7md.zdb;
 
 import com.a7md.zdb.Query.Select;
 import com.a7md.zdb.Query.ZQ.Condition;
-import com.a7md.zdb.Query.ZQ.ZWhere;
+import com.a7md.zdb.Query.ZQ.Selector;
 import com.a7md.zdb.ZCOL.Key;
 import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._ID_AI;
@@ -11,7 +11,6 @@ import com.a7md.zdb.utility.ZSystemError;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -129,23 +128,23 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return Select.row(getID().equal(id));
     }
 
-    public ArrayList<Item> list(Condition where) throws Exception {
-        return Select.list(this, new ZWhere(where));
+    public List<Item> list(Condition where) throws Exception {
+        return Select.list(this, new Selector(where));
     }
 
-    public ArrayList<Item> list() throws Exception {
+    public List<Item> list() throws Exception {
         return Select.list(this);
     }
 
-    public ArrayList<Item> list(Condition... conditions) throws Exception {
-        return list(new ZWhere(true, conditions));
+    public List<Item> list(Condition... conditions) throws Exception {
+        return list(new Selector(true, conditions));
     }
 
-    public ArrayList<Item> all() throws Exception {
+    public List<Item> all() throws Exception {
         return Select.list(this, null);
     }
 
-    public ArrayList<Item> list(ZWhere where) throws Exception {
+    public List<Item> list(Selector where) throws Exception {
         return Select.list(this, where);
     }
 
@@ -153,7 +152,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
         this.db.clearTable(this);
     }
 
-    public Item getItem(ZWhere installmentsRecorder) throws Exception {
+    public Item getItem(Selector installmentsRecorder) throws Exception {
         return Select.row(this, installmentsRecorder);
     }
 
@@ -161,5 +160,9 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return new SqlCol[]{
                 this.getID()
         };
+    }
+
+    public Item getItem(Condition condition) throws Exception {
+        return getItem(new Selector(condition));
     }
 }

@@ -11,4 +11,5 @@ public abstract class JoinHandler extends Join {
     }
 
     public abstract void handleRow(ResultSet set) throws Exception;
+
 }

@@ -4,18 +4,18 @@ import com.a7md.zdb.ZCOL.SqlCol;
 
 import java.util.ArrayList;
 
-public class ZWhere {
+public class Selector {
     private final ArrayList<Condition> conditions;
     private final ArrayList<String> combine_Operators = new ArrayList<>();
     private String Limits = "";
     private String OrderStatement = "";
 
-    public ZWhere(Condition cond) {
+    public Selector(Condition cond) {
         this.conditions = new ArrayList<>();
         conditions.add(cond);
     }
 
-    public ZWhere(boolean combined, Condition... conditions) {
+    public Selector(boolean combined, Condition... conditions) {
         this(conditions[0]);
         if (combined) {
             for (int i = 1; i < conditions.length; i++) {
@@ -51,19 +51,19 @@ public class ZWhere {
         return pieces;
     }
 
-    public ZWhere and(Condition condition) {
+    public Selector and(Condition condition) {
         conditions.add(condition);
         combine_Operators.add(" and ");
         return this;
     }
 
-    public ZWhere or(Condition condition) {
+    public Selector or(Condition condition) {
         conditions.add(condition);
         combine_Operators.add(" or ");
         return this;
     }
 
-    public ZWhere setLimits(int offset, int limit) {
+    public Selector setLimits(int offset, int limit) {
         this.Limits = "Limit " + offset + "," + limit;
         return this;
     }

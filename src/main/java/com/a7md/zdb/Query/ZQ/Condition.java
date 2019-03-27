@@ -4,11 +4,15 @@ public interface Condition {
 
     String getWherePiece();
 
-    default ZWhere and(Condition condition) {
-        return new ZWhere(this).and(condition);
+    default Selector and(Condition condition) {
+        return toWhere().and(condition);
     }
 
-    default ZWhere or(Condition condition) {
-        return new ZWhere(this).or(condition);
+    default Selector or(Condition condition) {
+        return toWhere().or(condition);
+    }
+
+    default Selector toWhere() {
+        return new Selector(this);
     }
 }

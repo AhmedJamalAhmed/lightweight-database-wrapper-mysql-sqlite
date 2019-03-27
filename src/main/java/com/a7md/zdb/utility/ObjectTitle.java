@@ -11,6 +11,7 @@ public class ObjectTitle<Obj> implements Supplier<Obj> {
         this.obj = obj;
     }
 
+
     public String getTitle() {
         return title;
     }

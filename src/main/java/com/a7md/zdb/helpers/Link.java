@@ -3,7 +3,7 @@ package com.a7md.zdb.helpers;
 import com.a7md.zdb.DBErrorHandler;
 import com.a7md.zdb.Query.JoinHandler;
 import com.a7md.zdb.Query.ZQ.Equal;
-import com.a7md.zdb.Query.ZQ.ZWhere;
+import com.a7md.zdb.Query.ZQ.Selector;
 import com.a7md.zdb.ZCOL.CreateTable;
 import com.a7md.zdb.ZCOL.Key;
 import com.a7md.zdb.ZCOL.SqlCol;
@@ -71,7 +71,7 @@ public abstract class Link {
     }
 
     public void DeleteRow(Equal id) throws SQLException {
-        String SQL = "DELETE FROM " + id.col.mtable.TableName + new ZWhere(id).get();
+        String SQL = "DELETE FROM " + id.col.mtable.TableName + new Selector(id).get();
         update(SQL);
     }
 
@@ -116,7 +116,7 @@ public abstract class Link {
                 SQl += ",";
             }
         }
-        SQl += new ZWhere(id).get();
+        SQl += new Selector(id).get();
         int RowsAffected;
         try (PreparedStatement PS = getConnection().prepareStatement(SQl)) {
             for (int i = 0; i < RowArray.size(); i++) {
@@ -149,6 +149,10 @@ public abstract class Link {
     public void clearTable(ZTable zTable) throws SQLException {
         String SQL = "DELETE FROM " + zTable.TableName + ";";
         update(SQL);
+    }
+
+    public void deleteTable(String tableName) throws SQLException {
+        update("DROP TABLE " + tableName + ";");
     }
 
     public interface ResultHandler<Return> {

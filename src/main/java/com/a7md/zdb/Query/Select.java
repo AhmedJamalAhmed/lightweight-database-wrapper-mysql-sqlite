@@ -2,7 +2,7 @@ package com.a7md.zdb.Query;
 
 import com.a7md.zdb.Query.ZQ.Condition;
 import com.a7md.zdb.Query.ZQ.Equal;
-import com.a7md.zdb.Query.ZQ.ZWhere;
+import com.a7md.zdb.Query.ZQ.Selector;
 import com.a7md.zdb.ZCOL.SqlCol;
 import com.a7md.zdb.ZCOL._Decimal;
 import com.a7md.zdb.ZCOL._Number;
@@ -12,6 +12,8 @@ import com.a7md.zdb.utility.ZSystemError;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Select {
 
@@ -25,32 +27,32 @@ public class Select {
     }
 
 
-    public static <U extends ZSqlRow> ArrayList<U> list(ZTable<U> table, ZWhere where) throws Exception {
+    public static <U extends ZSqlRow> List<U> list(ZTable<U> table, Selector where) throws Exception {
         String sql = "SELECT * FROM " + table.TableName;
         if (where != null) {
             sql += where.get();
         }
         return table.db.getResult(sql, r -> {
-            ArrayList<U> list = new ArrayList<>();
+            LinkedList<U> list = new LinkedList<>();
             while (r.next()) {
                 list.add(table.fromResultSet(r));
             }
-            return list;
+            return new ArrayList<>(list);
         });
     }
 
     @SuppressWarnings("unchecked")
     public static <U extends ZSqlRow> U row(Equal where) throws Exception {
-        ArrayList<U> list = list(where.col.mtable, new ZWhere(where));
+        List<U> list = list(where.col.mtable, new Selector(where));
         if (list.size() != 1) {
-            throw new ZSystemError("query of " + new ZWhere(where).get() + " return " + list.size() + " values");
+            throw new ZSystemError("query of " + new Selector(where).get() + " return " + list.size() + " values");
         } else {
             return list.get(0);
         }
     }
 
-    public static <U extends ZSqlRow> U row(ZTable<U> table, ZWhere where) throws Exception {
-        ArrayList<U> list = list(table, where);
+    public static <U extends ZSqlRow> U row(ZTable<U> table, Selector where) throws Exception {
+        List<U> list = list(table, where);
         if (list.size() != 1) {
             throw new ZSystemError("query of " + where.get() + " return " + list.size() + " values");
         } else {
@@ -58,16 +60,27 @@ public class Select {
         }
     }
 
-    public static void query(JoinHandler bind, ZWhere where) throws Exception {
+    public static <U extends ZSqlRow> U lastRow(ZTable<U> table, Selector where) throws Exception {
+        where.setLimits(0, 1);
+        where.orderDescBy(table.getID());
+        List<U> list = list(table, where);
+        if (list.size() != 1) {
+            throw new ZSystemError("query of " + where.get() + " return " + list.size() + " values");
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public static void query(JoinHandler bind, Selector where) throws Exception {
         String sql = build_join(bind, "*") + (where != null ? where.get() : "");
         bind.first_col.mtable.db.getResult(sql, bind);
     }
 
-    public static <U extends ZSqlRow> ArrayList<U> list(ZTable<U> table) throws Exception {
+    public static <U extends ZSqlRow> List<U> list(ZTable<U> table) throws Exception {
         return list(table, null);
     }
 
-    static public <T> T value(SqlCol<?, T> of_col, ZWhere where) throws Exception {
+    static public <T> T value(SqlCol<?, T> of_col, Selector where) throws Exception {
         String SQl = "SELECT " + of_col.name + " From " + of_col.mtable.TableName + where.get();
         return of_col.mtable.db.getResult(SQl,
                 r -> {
@@ -80,14 +93,14 @@ public class Select {
     }
 
     static public <T> T value(SqlCol<?, T> col, int id) throws Exception {
-        return value(col, new ZWhere(col.mtable.getID().equal(id)));
+        return value(col, new Selector(col.mtable.getID().equal(id)));
     }
 
     static public BigDecimal sum(_Decimal col, Equal where) throws Exception {
-        return sum(col, new ZWhere(where));
+        return sum(col, new Selector(where));
     }
 
-    static public BigDecimal sum(_Decimal col, ZWhere where) throws Exception {
+    static public BigDecimal sum(_Decimal col, Selector where) throws Exception {
         _Decimal decimal = new _Decimal<>("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
@@ -101,7 +114,7 @@ public class Select {
         });
     }
 
-    static public BigDecimal sum(_Decimal col, Join join, ZWhere where) throws Exception {
+    static public BigDecimal sum(_Decimal col, Join join, Selector where) throws Exception {
         _Decimal decimal = new _Decimal<>("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = build_join(join, decimal.name) + where.get();
@@ -116,10 +129,10 @@ public class Select {
 
 
     static public long sum(_Number col, Equal where) throws Exception {
-        return sum(col, new ZWhere(where));
+        return sum(col, new Selector(where));
     }
 
-    static public long sum(_Number col, ZWhere where) throws Exception {
+    static public long sum(_Number col, Selector where) throws Exception {
         _Number decimal = new _Number<>("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
@@ -134,10 +147,10 @@ public class Select {
     }
 
     static public BigDecimal sum(_Decimal col) throws Exception {
-        return sum(col, (ZWhere) null);
+        return sum(col, (Selector) null);
     }
 
-    static public int count(ZTable table, ZWhere Where) throws Exception {
+    static public int count(ZTable table, Selector Where) throws Exception {
         String SQL = "select count(0) from " + table.TableName + (Where == null ? "" : Where.get());
         return table.db.getResult(SQL, r -> {
             if (r.next()) {
@@ -149,11 +162,11 @@ public class Select {
     }
 
     static public int count(ZTable table, Condition condition) throws Exception {
-        return count(table, new ZWhere(condition));
+        return count(table, new Selector(condition));
     }
 
 
-    static public int count(Join join, ZWhere Where) throws Exception {
+    static public int count(Join join, Selector Where) throws Exception {
         String SQL = build_join(join, "count(0)") + (Where == null ? "" : Where.get());
         return join.first_col.mtable.db.getResult(SQL, r -> {
             if (r.next()) {
@@ -166,7 +179,7 @@ public class Select {
 
 
     static public boolean exist(Equal Ident) throws Exception {
-        return Ident.col.mtable.db.getResult("SELECT EXISTS(SELECT 1 FROM " + Ident.col.mtable.TableName + new ZWhere(Ident).get() + ")",
+        return Ident.col.mtable.db.getResult("SELECT EXISTS(SELECT 1 FROM " + Ident.col.mtable.TableName + new Selector(Ident).get() + ")",
                 r -> {
                     if (r.next()) {
                         return r.getInt(1) == 1;
@@ -177,9 +190,9 @@ public class Select {
         );
     }
 
-    static public boolean exist(ZTable table, ZWhere zWhere) throws Exception {
+    static public boolean exist(ZTable table, Selector selector) throws Exception {
         return table.db.getResult("SELECT EXISTS(SELECT 1 FROM " + table.TableName +
-                        zWhere.get() + ")",
+                        selector.get() + ")",
                 r -> {
                     if (r.next()) {
                         return r.getInt(1) == 1;
@@ -202,4 +215,5 @@ public class Select {
                 }
         );
     }
+
 }
