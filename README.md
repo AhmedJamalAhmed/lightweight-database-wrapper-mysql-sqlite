@@ -1,4 +1,4 @@
-# lightweight-database-wrapper-mysql-sqlite-
+# lightweight-database-wrapper-mysql-sqlite
 
 # Import to gradle
 
