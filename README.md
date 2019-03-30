@@ -1,4 +1,4 @@
-# lightweight-database-wrapper-mysql-sqlite
+# lightweight database wrapper for mysql and sqlite
 
 [![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
 
