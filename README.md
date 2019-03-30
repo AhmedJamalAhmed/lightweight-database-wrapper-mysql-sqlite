@@ -1,5 +1,7 @@
 # lightweight-database-wrapper-mysql-sqlite
 
+[![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
+
 # Import to gradle
 
 Add it in your root build.gradle at the end of repositories:
