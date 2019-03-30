@@ -18,7 +18,7 @@ To install the library add:
 	}
 	
 	dependencies {
-	        implementation 'com.github.AhmedJamalAhmed:lightweight-database-wrapper-mysql-sqlite:v6'
+	        implementation 'com.github.gitjemy:zdb:v6'
 	}
    ```  
 ## Usage
