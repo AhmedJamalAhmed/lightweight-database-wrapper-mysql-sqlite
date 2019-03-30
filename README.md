@@ -2,7 +2,7 @@
 
 [![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
 
-# Import to gradle
+## Import to gradle
 
 Add it in your root build.gradle at the end of repositories:
 
@@ -20,9 +20,9 @@ Step 2. Add the dependency
 	}
   
   
-  # Usage
+## Usage
   
-  create model 
+### create model 
   
 	  public class User implements ZSqlRow {
 	
@@ -50,7 +50,7 @@ Step 2. Add the dependency
 
 
 
-create table class 
+### create table class 
 
 	public class UsersTable extends ZTable<User> {
 	
@@ -68,7 +68,7 @@ create table class
 	    }
 	}
 
-use table class to save and retrive data to db
+### use table class to save and retrive data to db
 
 
 	public static void main(String[] strings) {
