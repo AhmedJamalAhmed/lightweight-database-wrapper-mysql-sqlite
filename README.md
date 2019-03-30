@@ -1,29 +1,31 @@
 # lightweight database wrapper for mysql and sqlite
 
-[![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
+FontIcon [![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
+======== 
 
-## Import to gradle
 
-Add it in your root build.gradle at the end of repositories:
+Install
+=======
 
+To install the library add: 
+ 
+   ```gradle
 	allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
-  
-Step 2. Add the dependency
-
+	
 	dependencies {
 	        implementation 'com.github.AhmedJamalAhmed:lightweight-database-wrapper-mysql-sqlite:v6'
 	}
-  
-  
+   ```  
 ## Usage
   
 ### create model 
-  
+
+```java
 	  public class User implements ZSqlRow {
 	
 	    private String name;
@@ -47,11 +49,11 @@ Step 2. Add the dependency
 	        this.id = id;
 	    }
 	}
-
-
+```
 
 ### create table class 
 
+```java
 	public class UsersTable extends ZTable<User> {
 	
 	    _String<User> name = new _String<>("name", 250,
@@ -67,10 +69,10 @@ Step 2. Add the dependency
 	        return new User();
 	    }
 	}
-
+```
 ### use table class to save and retrive data to db
 
-
+```java
 	public static void main(String[] strings) {
 	        Link link = new MysqlHelper("localhost", "DBName", "user", "pass", Throwable::printStackTrace);
 	        UsersTable usersTable = new UsersTable(link);
@@ -87,3 +89,4 @@ Step 2. Add the dependency
 	            e.printStackTrace();
 	        }
 	    }
+```
