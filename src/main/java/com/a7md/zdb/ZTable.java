@@ -1,6 +1,5 @@
 package com.a7md.zdb;
 
-import com.a7md.zdb.Query.Select;
 import com.a7md.zdb.Query.ZQ.Condition;
 import com.a7md.zdb.Query.ZQ.Selector;
 import com.a7md.zdb.ZCOL.Key;
@@ -33,7 +32,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return cols;
     }
 
-    protected void register(SqlCol<Item, ?>... otherCols) {
+    protected void register(SqlCol<Item, ?>... otherCols) throws Exception {
         SqlCol<Item, ?>[] cols = new SqlCol[otherCols.length + 1];
         cols[0] = ID;
         int i = 1;
@@ -47,7 +46,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public void onTableCreation() throws Exception {
-        System.out.println("-> creating table " + this.TableName + " ...");
+
     }
 
     public Item fromResultSet(ResultSet res) throws Exception {
@@ -125,15 +124,15 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public Item getById(int id) throws Exception {
-        return Select.row(getID().equal(id));
+        return db.row(getID().equal(id));
     }
 
     public List<Item> list(Condition where) throws Exception {
-        return Select.list(this, new Selector(where));
+        return db.list(this, new Selector(where));
     }
 
     public List<Item> list() throws Exception {
-        return Select.list(this);
+        return db.list(this);
     }
 
     public List<Item> list(Condition... conditions) throws Exception {
@@ -141,11 +140,11 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public List<Item> all() throws Exception {
-        return Select.list(this, null);
+        return db.list(this, null);
     }
 
     public List<Item> list(Selector where) throws Exception {
-        return Select.list(this, where);
+        return db.list(this, where);
     }
 
     public void clearTable() throws SQLException {
@@ -153,7 +152,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public Item getItem(Selector installmentsRecorder) throws Exception {
-        return Select.row(this, installmentsRecorder);
+        return db.row(this, installmentsRecorder);
     }
 
     public SqlCol<Item, ?>[] getFilterCols() {

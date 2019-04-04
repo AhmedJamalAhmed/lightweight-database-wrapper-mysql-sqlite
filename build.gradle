@@ -14,19 +14,4 @@ repositories {
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
-
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-
-}
-
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Implementation-Title': 'Bareza System (Ahmed gamal ahmed) ahmedjamal.dev@gmail.com',
-                'Implementation-Version': version,
-                'Main-Class': 'com.a7md.main'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
-    with jar
 }

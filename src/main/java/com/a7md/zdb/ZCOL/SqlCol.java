@@ -1,6 +1,5 @@
 package com.a7md.zdb.ZCOL;
 
-import com.a7md.zdb.Query.Select;
 import com.a7md.zdb.Query.ZQ.Equal;
 import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.ZTable;
@@ -44,7 +43,7 @@ abstract public class SqlCol<E extends ZSqlRow, V> {
     }
 
     public boolean exist(V val) throws Exception {
-        return Select.exist(equal(val));
+        return mtable.db.exist(equal(val));
     }
 
     abstract public Equal equal(V val);

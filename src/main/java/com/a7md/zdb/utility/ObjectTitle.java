@@ -3,8 +3,8 @@ package com.a7md.zdb.utility;
 import java.util.function.Supplier;
 
 public class ObjectTitle<Obj> implements Supplier<Obj> {
-    final String title;
-    final Obj obj;
+    private final String title;
+    private final Obj obj;
 
     public ObjectTitle(String title, Obj obj) {
         this.title = title;

@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class _Boolean<E extends ZSqlRow> extends SqlCol<E, Boolean> {
-    final short Size;
+    private final short Size;
 
     public _Boolean(String name, boolean not_null, WritableProperty<E, Boolean> property) {
         super(name, property, not_null);

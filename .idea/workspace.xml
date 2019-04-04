@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d688e0b-f66f-4896-aa13-f8fdea3676c2" name="Default Changelist" comment="remove uni">
+    <list default="true" id="2d688e0b-f66f-4896-aa13-f8fdea3676c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/JoinHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/JoinHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Equal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Equal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/ZWhere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Selector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/_Boolean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/_Boolean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ios/ExcelView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ios/Import.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/utility/ObjectTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/utility/ObjectTitle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/MysqlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/MysqlHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/properties/WritableProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/properties/WritableProperty.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -50,62 +46,46 @@
     <session id="1843717868">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.0" value="3" />
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.0" value="4" />
           <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="class" value="3" />
           <entry key="gradle" value="4" />
-          <entry key="java" value="45" />
+          <entry key="java" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CLASS" value="3" />
           <entry key="Groovy" value="4" />
-          <entry key="JAVA" value="45" />
+          <entry key="JAVA" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="8" />
-          <entry key="java" value="38" />
-          <entry key="txt" value="93" />
+          <entry key="java" value="189" />
+          <entry key="txt" value="201" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="8" />
-          <entry key="JAVA" value="38" />
-          <entry key="PLAIN_TEXT" value="93" />
+          <entry key="JAVA" value="189" />
+          <entry key="PLAIN_TEXT" value="201" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -433,8 +413,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/properties/Property.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Writer.java" />
         <option value="$PROJECT_DIR$/../Systems/ZSystem/core/src/main/java/com/a7md/app/db/ios/Import.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/MysqlHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/Link.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java" />
       </list>
     </option>
   </component>
@@ -577,6 +560,16 @@
               <item name="a7md" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="zdb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
+            <path>
+              <item name="zdb" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="zdb" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="zdb_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="a7md" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="zdb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="RowTypes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -638,14 +631,28 @@
       <option name="project" value="LOCAL" />
       <updated>1547685491728</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Using Linked list for observing values form the table and return array list">
+      <created>1553696985522</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1553696985522</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Using Linked list for observing values form the table and return array list">
+      <created>1553698107857</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1553698107857</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19395973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18322147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -658,10 +665,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.19595449" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.32934928" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32934928" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3282123" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -678,7 +685,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="initial" />
     <MESSAGE value="remove com.sun.istack.internal classes to compile on jitpack" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove com.sun.istack.internal classes to compile on jitpack" />
+    <MESSAGE value="Using Linked list for observing values form the table and return array list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Using Linked list for observing values form the table and return array list" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -784,17 +792,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/jre/lib/rt.jar!/java/util/LinkedList.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        <state relative-caret-position="177">
+          <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/jre/lib/rt.jar!/java/util/Collection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/jre/lib/rt.jar!/java/util/ArrayList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="42" column="35" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
+        <state relative-caret-position="-42">
+          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#781#782#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/Link.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="124" column="16" lean-forward="true" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+          <folding>
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/MysqlHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="48" column="45" lean-forward="true" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+          <folding>
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/CreationTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#179#180#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+            <element signature="e#351#352#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/LastModified.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/DateTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
         </state>
       </provider>
     </entry>
