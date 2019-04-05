@@ -3,24 +3,6 @@
 FontIcon [![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
 ======== 
 
-
-Install
-=======
-
-To install the library add: 
- 
-   ```gradle
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-	
-	dependencies {
-	        implementation 'com.github.gitjemy:zdb:v6'
-	}
-   ```  
 ## Usage
   
 ### create model 
