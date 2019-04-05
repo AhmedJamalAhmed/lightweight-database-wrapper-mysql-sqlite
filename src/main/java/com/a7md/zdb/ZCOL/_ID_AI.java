@@ -25,11 +25,6 @@ public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
         return new Equal(this, val);
     }
 
-    public NotEqual not_equal(Integer val) {
-        return new NotEqual(this, val);
-    }
-
-
     @Override
     protected void create(CreateTable CreateTable, Link link) {
         if (link instanceof MysqlHelper) {
@@ -40,9 +35,12 @@ public class _ID_AI<E extends ZSqlRow> extends SqlCol<E, Integer> {
         }
     }
 
+    public NotEqual not_equal(Integer val) {
+        return new NotEqual(this, val);
+    }
+
     @Override
     final public Integer get(ResultSet resultSet) throws SQLException {
-
         return resultSet.getInt(name);
     }
 }

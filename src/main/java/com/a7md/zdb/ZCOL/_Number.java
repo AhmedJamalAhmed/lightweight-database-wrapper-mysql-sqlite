@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class _Number<E extends ZSqlRow> extends SqlCol<E, Integer> {
 
-    final short Size;
+    private final short Size;
 
     public _Number(String name, boolean not_null, WritableProperty<E, Integer> property) {
         super(name, property, not_null);

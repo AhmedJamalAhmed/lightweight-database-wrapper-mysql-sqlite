@@ -2,60 +2,43 @@ package com.a7md.zdb;
 
 import com.a7md.zdb.Query.ZQ.Condition;
 import com.a7md.zdb.Query.ZQ.Selector;
+import com.a7md.zdb.ZCOL.COL;
 import com.a7md.zdb.ZCOL.Key;
-import com.a7md.zdb.ZCOL.SqlCol;
-import com.a7md.zdb.ZCOL._ID_AI;
 import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.utility.ZSystemError;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-abstract public class ZTable<Item extends ZSqlRow> {
+public abstract class Table<Item extends ZSqlRow, Resultset,
+        DB extends Link<Resultset>,
+        IDTYPE extends COL<Resultset, Item, Integer>,
+        ColsType extends COL<Resultset, Item, ?>> {
 
-    private final _ID_AI<Item> ID;
-    public Link db;
+    private final IDTYPE ID;
+    public DB db;
     public String TableName;
-    public SqlCol<Item, ?>[] cols;
+    private ColsType[] cols;
 
-    public ZTable(Link link, String TName, _ID_AI<Item> ID) {
+    public Table(DB link, String TName, IDTYPE ID) {
         this.db = link;
         this.TableName = TName;
         this.ID = ID;
         ID.setMtable(this);
     }
 
-    public SqlCol<Item, ?>[] getCols() {
+    public ColsType[] getCols() {
         return cols;
     }
 
-    protected void register(SqlCol<Item, ?>... otherCols) throws Exception {
-        SqlCol<Item, ?>[] cols = new SqlCol[otherCols.length + 1];
-        cols[0] = ID;
-        int i = 1;
-        for (SqlCol<Item, ?> col : otherCols) {
-            cols[i] = col;
-            cols[i].setMtable(this);
-            i++;
-        }
+    final protected void setCols(ColsType[] cols) {
         this.cols = cols;
-        db.registerTable(this, cols);
     }
 
     public void onTableCreation() throws Exception {
 
-    }
-
-    public Item fromResultSet(ResultSet res) throws Exception {
-        Item newElement = createNewElement();
-        SqlCol<Item, ?>[] cols = getCols();
-        for (SqlCol<Item, ?> col : cols) {
-            col.assign(newElement, res);
-        }
-        return newElement;
     }
 
     public abstract Item createNewElement();
@@ -95,7 +78,7 @@ abstract public class ZTable<Item extends ZSqlRow> {
         return !selectexists;
     }
 
-    public int update(Item item) throws Exception {
+    public long update(Item item) throws Exception {
         List<Key> keys = toRow(item, true);
         int id = item.getId();
         boolean selectexists = ID.exist(id);
@@ -119,12 +102,12 @@ abstract public class ZTable<Item extends ZSqlRow> {
     protected void validate_delete(int id) throws Exception {
     }
 
-    public final _ID_AI getID() {
+    public final IDTYPE getID() {
         return this.ID;
     }
 
     public Item getById(int id) throws Exception {
-        return db.row(getID().equal(id));
+        return (Item) db.row(getID().equal(id));
     }
 
     public List<Item> list(Condition where) throws Exception {
@@ -152,14 +135,9 @@ abstract public class ZTable<Item extends ZSqlRow> {
     }
 
     public Item getItem(Selector installmentsRecorder) throws Exception {
-        return db.row(this, installmentsRecorder);
+        return (Item) db.row(this, installmentsRecorder);
     }
 
-    public SqlCol<Item, ?>[] getFilterCols() {
-        return new SqlCol[]{
-                this.getID()
-        };
-    }
 
     public Item getItem(Condition condition) throws Exception {
         return getItem(new Selector(condition));

@@ -1,8 +1,8 @@
 package com.a7md.zdb.ZCOL;
 
+import com.a7md.zdb.Table;
 import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.helpers.MysqlHelper;
-import com.a7md.zdb.ZTable;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,11 +11,11 @@ public class CreateTable {
     public final ArrayList<String> first;
     public final ArrayList<String> last;
 
-    public CreateTable(ZTable zTable, Link link, SqlCol... sqlCols) throws SQLException {
+    public CreateTable(Table zTable, Link link, ArrayList<COL> sqlCols) throws SQLException {
         this.first = new ArrayList<>();
         this.last = new ArrayList<>();
 
-        for (SqlCol sqlCol : sqlCols) {
+        for (COL sqlCol : sqlCols) {
             sqlCol.create(this, link);
         }
         first.addAll(last);

@@ -1,6 +1,6 @@
 package com.a7md.zdb.Query.ZQ;
 
-import com.a7md.zdb.ZCOL.SqlCol;
+import com.a7md.zdb.ZCOL.COL;
 
 import java.util.ArrayList;
 
@@ -68,11 +68,11 @@ public class Selector {
         return this;
     }
 
-    public void orderBy(SqlCol Col) {
+    public void orderBy(COL Col) {
         this.OrderStatement = "order by " + Col.name;
     }
 
-    public void orderDescBy(SqlCol Col) {
+    public void orderDescBy(COL Col) {
         this.OrderStatement = "order by " + Col.name + " desc";
     }
 }

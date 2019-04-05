@@ -46,9 +46,4 @@ public class _Object<E extends ZSqlRow, type> extends SqlCol<E, type> {
         AtomicReference atomicReference = gsonBuilder.fromJson(resultSet.getString(this.name), AtomicReference.class);
         return (type) atomicReference.get();
     }
-
-    public void assign(E e, ResultSet resultSet) throws Exception {
-        type v = get(resultSet);
-        property.setValue(e, v);
-    }
 }

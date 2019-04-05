@@ -1,12 +1,12 @@
 package com.a7md.zdb.Query;
 
-import com.a7md.zdb.ZCOL.SqlCol;
+import com.a7md.zdb.ZCOL.COL;
 
 public class Join {
-    public final SqlCol first_col;
-    public final SqlCol Second_col;
+    public final COL first_col;
+    public final COL Second_col;
 
-    public Join(SqlCol first_col, SqlCol second_col) {
+    public Join(COL first_col, COL second_col) {
         this.first_col = first_col;
         Second_col = second_col;
     }
