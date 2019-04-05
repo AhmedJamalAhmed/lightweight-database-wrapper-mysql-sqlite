@@ -1,16 +1,13 @@
 package com.a7md.zdb.properties;
 
-import com.a7md.zdb.Writer;
-
 import java.math.BigDecimal;
-import java.util.function.Function;
 
 public class WritableProperty<E, V> extends Property<E, V> {
 
     private final Writer<E, V> writer;
     Class<V> assignedClass = null;
 
-    public WritableProperty(String title, Function<E, V> reader, Writer<E, V> writer) {
+    public WritableProperty(String title, Func<E, V> reader, Writer<E, V> writer) {
         super(title, reader);
         this.writer = writer;
     }
@@ -44,7 +41,7 @@ public class WritableProperty<E, V> extends Property<E, V> {
             }
         }
         if (!written) {
-            throw new Exception("لا يمكن تسجيل تحويل القيمة" + System.lineSeparator() + token + System.lineSeparator() + getTitle());
+            throw new Exception("لا يمكن تسجيل تحويل القيمة" + "\n" + token + "\n" + getTitle());
         }
     }
 

@@ -29,7 +29,7 @@ public abstract class COL<rs, E extends ZSqlRow, V> {
 
     public Key toDbKey(E e) {
         V value = property.getValue(e);
-        return new Key<>(name, value);
+        return new Key(name, value);
     }
 
     abstract public void assign(E e, rs resultSet) throws Exception;

@@ -1,10 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="zdb">
-    <output-path>$PROJECT_DIR$/out/artifacts/zdb</output-path>
+  <artifact type="jar" name="zdb_main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/zdb_main_jar</output-path>
     <root id="archive" name="zdb_main.jar">
       <element id="module-output" name="zdb_main" />
+      <element id="module-output" name="gdb_main" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/f645ed69d595b24d4cf8b3fbb64cc505bede8829/gson-2.8.5.jar" path-in-jar="/" />
-      <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.5" />
+      <element id="module-source" name="gdb_main" />
       <element id="module-source" name="zdb_main" />
     </root>
   </artifact>

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="gdb_main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/gdb_main_jar</output-path>
+    <root id="archive" name="gdb_main.jar">
+      <element id="module-output" name="gdb_main" />
+      <element id="module-source" name="gdb_main" />
+      <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.5" />
+    </root>
+  </artifact>
+</component>

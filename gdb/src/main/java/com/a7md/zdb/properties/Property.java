@@ -1,14 +1,13 @@
 package com.a7md.zdb.properties;
 
-import java.util.function.Function;
 
 public class Property<E, V> {
 
     private final String title;
-    private final Function<E, V> reader;
+    private final Func<E, V> reader;
 
 
-    public Property(String title, Function<E, V> reader) {
+    public Property(String title, Func<E, V> reader) {
         this.title = title;
         this.reader = reader;
     }
@@ -21,7 +20,7 @@ public class Property<E, V> {
         return reader.apply(e);
     }
 
-    public Function<E, V> getReader() {
+    public Func<E, V> getReader() {
         return reader;
     }
 }

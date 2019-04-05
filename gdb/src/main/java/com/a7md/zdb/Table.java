@@ -8,9 +8,8 @@ import com.a7md.zdb.helpers.Link;
 import com.a7md.zdb.utility.ZSystemError;
 
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class Table<Item extends ZSqlRow, Resultset,
         DB extends Link<Resultset>,
@@ -41,12 +40,31 @@ public abstract class Table<Item extends ZSqlRow, Resultset,
 
     }
 
+    public Item fromResultSet(Resultset res) throws Exception {
+        Item newElement = createNewElement();
+        COL[] cols = getCols();
+        for (COL col : cols) {
+            col.assign(newElement, res);
+        }
+        return newElement;
+    }
+
     public abstract Item createNewElement();
 
     public List<Key> toRow(Item item, boolean withId) {
-        return Arrays.stream(getCols()).
-                filter(f -> withId || f != ID)
-                .map(s -> s.toDbKey(item)).collect(Collectors.toList());
+        ColsType[] cols = getCols();
+        ArrayList<Key> list = new ArrayList<Key>();
+        if (withId) {
+            for (ColsType col : cols) {
+                list.add(col.toDbKey(item));
+            }
+        } else {
+            IDTYPE id = getID();
+            for (ColsType col : cols) {
+                if (col != id) list.add(col.toDbKey(item));
+            }
+        }
+        return list;
     }
 
     /**

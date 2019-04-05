@@ -9,12 +9,10 @@ import com.a7md.zdb.Table;
 import com.a7md.zdb.ZCOL.COL;
 import com.a7md.zdb.ZCOL.CreateTable;
 import com.a7md.zdb.ZCOL.Key;
-import com.a7md.zdb.ZCOL._Decimal;
-import com.a7md.zdb.ZCOL._Number;
 import com.a7md.zdb.ZSqlRow;
 import com.a7md.zdb.utility.ZSystemError;
 
-import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,8 +115,6 @@ public abstract class Link<ResultSet> {
     abstract public <V> ArrayList<V> distinctValues(COL<ResultSet, ?, V> col) throws Exception;
 
     abstract protected boolean TableExist(String tableName) throws SQLException;
-
-    abstract public <Item extends ZSqlRow> Item fromResultSet(Table<Item, ResultSet, ?, ?, ?> table, ResultSet res) throws Exception;
 
     public interface DBTransaction {
         void run() throws Throwable;

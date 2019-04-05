@@ -2,7 +2,7 @@ package com.a7md.zdb.Query.ZQ;
 
 import com.a7md.zdb.ZCOL.COL;
 
-public class Like implements Condition {
+public class Like extends Condition {
     private final COL col;
     private final Object value;
 

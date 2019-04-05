@@ -1,16 +1,9 @@
 package com.a7md.zdb.helpers;
 
-import com.a7md.zdb.Query.ZQ.Selector;
-import com.a7md.zdb.Table;
-import com.a7md.zdb.ZCOL.Key;
-import com.a7md.zdb.ZSqlRow;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.List;
 
 public class SQLiteHelper extends JavaSeLink {
 

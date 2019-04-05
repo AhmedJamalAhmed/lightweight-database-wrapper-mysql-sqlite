@@ -62,7 +62,9 @@ public abstract class JavaSeLink extends Link<ResultSet> {
             }
         }
         SQl.append(")").append(Values).append(")");
-        try (PreparedStatement PS = getConnection().prepareStatement(SQl.toString(), Statement.RETURN_GENERATED_KEYS)) {
+
+        PreparedStatement PS = getConnection().prepareStatement(SQl.toString(), Statement.RETURN_GENERATED_KEYS);
+        try {
             for (int i = 0; i < RowArray.size(); i++) {
                 Key key = RowArray.get(i);
                 PS.setObject(i + 1, key.getValue());
@@ -74,6 +76,9 @@ public abstract class JavaSeLink extends Link<ResultSet> {
                     return rs.getInt(1);
                 }
             }
+            PS.close();
+        } finally {
+            PS.close();
         }
         // if faild
         return -1;
@@ -92,31 +97,46 @@ public abstract class JavaSeLink extends Link<ResultSet> {
         }
         SQl.append(new Selector(id).get());
         int RowsAffected;
-        try (PreparedStatement PS = getConnection().prepareStatement(SQl.toString())) {
+        PreparedStatement PS = getConnection().prepareStatement(SQl.toString());
+        try {
             for (int i = 0; i < RowArray.size(); i++) {
                 Key key = RowArray.get(i);
                 PS.setObject(i + 1, key.getValue());
             }
             RowsAffected = PS.executeUpdate();
+        } finally {
+            PS.close();
         }
         return RowsAffected != 0;
     }
 
     private <E> E getResult(String sql, JavaSeLink.ResultHandler<E> handler) throws Exception {
-        try (Statement e = getConnection().createStatement()) {
-            try (ResultSet res = e.executeQuery(sql)) {
+        Statement e = getConnection().createStatement();
+        try {
+            ResultSet res = e.executeQuery(sql);
+            try {
                 return handler.handle(res);
+            } finally {
+                res.close();
             }
+        } finally {
+            e.close();
         }
     }
 
     private void getResult(String sql, JoinHandler handler) throws Exception {
-        try (Statement e = getConnection().createStatement()) {
-            try (ResultSet res = e.executeQuery(sql)) {
+        Statement e = getConnection().createStatement();
+        try {
+            ResultSet res = e.executeQuery(sql);
+            try {
                 while (res.next()) {
                     handler.handleRow(res);
                 }
+            } finally {
+                res.close();
             }
+        } finally {
+            e.close();
         }
     }
 
@@ -132,28 +152,18 @@ public abstract class JavaSeLink extends Link<ResultSet> {
     }
 
     @Override
-    public <U extends ZSqlRow> List<U> list(Table<U, ResultSet, ?, ?, ?> table, Selector where) throws Exception {
+    public <U extends ZSqlRow> List<U> list(final Table<U, ResultSet, ?, ?, ?> table, Selector where) throws Exception {
         String sql = "SELECT * FROM " + table.TableName;
         if (where != null) {
             sql += where.get();
         }
-        return getResult(sql, r -> {
-            LinkedList<U> list = new LinkedList<>();
+        return getResult(sql, (ResultHandler<List<U>>) r -> {
+            LinkedList<U> list = new LinkedList<U>();
             while (r.next()) {
-                list.add(fromResultSet(table, r));
+                list.add(table.fromResultSet(r));
             }
             return list;
         });
-    }
-
-    @Override
-    public <Item extends ZSqlRow> Item fromResultSet(Table<Item, ResultSet, ?, ?, ?> table, ResultSet res) throws Exception {
-        Item newElement = table.createNewElement();
-        COL[] cols = table.getCols();
-        for (COL col : cols) {
-            col.assign(newElement, res);
-        }
-        return newElement;
     }
 
     @Override
@@ -164,7 +174,7 @@ public abstract class JavaSeLink extends Link<ResultSet> {
 
 
     @Override
-    public <T> T value(COL<ResultSet, ?, T> of_col, Selector where) throws Exception {
+    public <T> T value(final COL<ResultSet, ?, T> of_col, Selector where) throws Exception {
         String SQl = "SELECT " + of_col.name + " From " + of_col.mtable.TableName + where.get();
         return getResult(SQl,
                 r -> {
@@ -178,7 +188,7 @@ public abstract class JavaSeLink extends Link<ResultSet> {
 
 
     public BigDecimal sum(_Decimal col, Selector where) throws Exception {
-        _Decimal decimal = new _Decimal<>("sum(" + col.name + ")", null);
+        final _Decimal decimal = new _Decimal("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
                 + (where == null ? "" : where.get());
@@ -193,7 +203,7 @@ public abstract class JavaSeLink extends Link<ResultSet> {
     }
 
     public BigDecimal sum(_Decimal col, Join join, Selector where) throws Exception {
-        _Decimal decimal = new _Decimal<>("sum(" + col.name + ")", null);
+        final _Decimal decimal = new _Decimal("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = build_join(join, decimal.name) + where.get();
         return getResult(sql, r -> {
@@ -206,7 +216,7 @@ public abstract class JavaSeLink extends Link<ResultSet> {
     }
 
     public long sum(_Number col, Selector where) throws Exception {
-        _Number decimal = new _Number<>("sum(" + col.name + ")", null);
+        final _Number decimal = new _Number("sum(" + col.name + ")", null);
         decimal.setMtable(col.mtable);
         String sql = "select sum(" + col.name + ") from " + col.mtable.TableName
                 + (where == null ? "" : where.get());
@@ -271,10 +281,10 @@ public abstract class JavaSeLink extends Link<ResultSet> {
     }
 
     @Override
-    public <V> ArrayList<V> distinctValues(COL<ResultSet, ?, V> col) throws Exception {
+    public <V> ArrayList<V> distinctValues(final COL<ResultSet, ?, V> col) throws Exception {
         return getResult("SELECT DISTINCT " + col.name + " from " + col.mtable.TableName,
                 r -> {
-                    ArrayList<V> list = new ArrayList<>();
+                    ArrayList<V> list = new ArrayList<V>();
                     while (r.next()) {
                         list.add(col.get(r));
                     }

@@ -6,7 +6,7 @@ import com.a7md.zdb.helpers.MysqlHelper;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class Between implements Condition {
+public class Between extends Condition {
     private final _TimeStamp mCol;
 
     final private LocalDateTime from;

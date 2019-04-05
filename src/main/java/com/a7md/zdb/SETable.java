@@ -1,15 +1,10 @@
 package com.a7md.zdb;
 
-import com.a7md.zdb.Query.ZQ.Equal;
-import com.a7md.zdb.Query.ZQ.Selector;
 import com.a7md.zdb.ZCOL.COL;
 import com.a7md.zdb.ZCOL.SqlCol;
-import com.a7md.zdb.ZCOL._Decimal;
 import com.a7md.zdb.ZCOL._ID_AI;
-import com.a7md.zdb.ZCOL._Number;
 import com.a7md.zdb.helpers.JavaSeLink;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 

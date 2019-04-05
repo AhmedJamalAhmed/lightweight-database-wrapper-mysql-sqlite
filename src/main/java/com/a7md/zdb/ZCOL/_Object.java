@@ -28,17 +28,17 @@ public class _Object<E extends ZSqlRow, type> extends SqlCol<E, type> {
 
     @Override
     public Equal equal(type val) {
-        return new Equal(this, gsonBuilder.toJson(new AtomicReference<>(val), AtomicReference.class));
+        return new Equal(this, gsonBuilder.toJson(new AtomicReference<type>(val), AtomicReference.class));
     }
 
     @Override
     final public Key toDbKey(E item) {
         type value = property.getValue(item);
-        return new Key<>(name, gsonBuilder.toJson(new AtomicReference<>(value), AtomicReference.class));
+        return new Key(name, gsonBuilder.toJson(new AtomicReference<type>(value), AtomicReference.class));
     }
 
     public Key setData(AtomicReference<type> Value) {
-        return new Key<>(name, gsonBuilder.toJson(Value));
+        return new Key(name, gsonBuilder.toJson(Value));
     }
 
     @Override

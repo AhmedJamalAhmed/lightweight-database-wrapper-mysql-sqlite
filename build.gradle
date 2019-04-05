@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation project(":gdb")
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
+
 }
