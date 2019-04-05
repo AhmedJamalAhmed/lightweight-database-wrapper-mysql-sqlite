@@ -1,11 +1,7 @@
 package com.a7md.zdb.helpers;
 
-import com.a7md.zdb.Query.ZQ.Selector;
-import com.a7md.zdb.ZCOL.COL;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
