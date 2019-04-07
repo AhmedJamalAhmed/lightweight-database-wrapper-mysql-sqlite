@@ -1,8 +1,5 @@
 # lightweight database wrapper for mysql and sqlite
 
-FontIcon [![](https://jitpack.io/v/AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite.svg)](https://jitpack.io/#AhmedJamalAhmed/lightweight-database-wrapper-mysql-sqlite)
-======== 
-
 ## Usage
   
 ### create model 

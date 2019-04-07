@@ -42,4 +42,6 @@ public class _String<E extends ZSqlRow> extends SqlCol<E, String> {
     public Like like(String val) {
         return new Like(this, val);
     }
+
+
 }

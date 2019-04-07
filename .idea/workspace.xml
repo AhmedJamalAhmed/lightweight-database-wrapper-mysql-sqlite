@@ -6,53 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d688e0b-f66f-4896-aa13-f8fdea3676c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/artifacts/gdb_main_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/Condition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/ZCOL/CreateTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/properties/Func.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/utility/IO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/utility/Lang.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/utility/ObjectTitle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/utility/ZSystemError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/zdb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/zdb_main_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/DBErrorHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Join.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/Join.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/JoinHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/JoinHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/Select.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Between.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Between.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Condition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Equal.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/Equal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/GreaterThan.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/GreaterThan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/LessThan.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/LessThan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/NotEqual.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/NotEqual.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Query/ZQ/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Query/ZQ/Selector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/CreationTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/CreationTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/DateTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/DateTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/LastModified.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/RowTypes/LastModified.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/SETable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/SETable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/properties/Writer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/COL.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/ZCOL/COL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/ZCOL/Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/_Object.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZCOL/_Object.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/ZSqlRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/ZSqlRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/JavaSeLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/JavaSeLink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/helpers/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/helpers/SQLiteHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/properties/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/properties/Property.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a7md/zdb/properties/WritableProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/gdb/src/main/java/com/a7md/zdb/properties/WritableProperty.java" afterDir="false" />
-    </list>
+    <list default="true" id="2d688e0b-f66f-4896-aa13-f8fdea3676c2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -96,7 +50,7 @@
     <session id="1843717868">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.14" value="1" />
@@ -772,7 +726,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="462" />
     <option name="y" value="224" />
     <option name="width" value="865" />
@@ -1035,7 +989,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1616" height="886" extended-state="7" />
+    <frame x="-8" y="22" width="1616" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23071979" />
@@ -1059,7 +1013,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info active="true" anchor="right" id="Gradle" order="4" visible="true" weight="0.1940874" />
+      <window_info anchor="right" id="Gradle" order="4" weight="0.1940874" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
     </layout>

@@ -13,7 +13,7 @@ public abstract class COL<rs, E extends ZSqlRow, V> {
     public final String name;
     protected final WritableProperty<E, V> property;
     protected final boolean not_null;
-    public Table<E, ?, ?, ?, ?> mtable;
+    public Table<E, rs, ?, ?, ?> mtable;
 
     protected COL(String Name, WritableProperty<E, V> property, boolean not_null) {
         this.name = Name;
@@ -34,7 +34,7 @@ public abstract class COL<rs, E extends ZSqlRow, V> {
 
     abstract public void assign(E e, rs resultSet) throws Exception;
 
-    public void setMtable(Table<E, ?, ?, ?, ?> mtable) {
+    public void setMtable(Table<E, rs, ?, ?, ?> mtable) {
         this.mtable = mtable;
     }
 
@@ -50,5 +50,9 @@ public abstract class COL<rs, E extends ZSqlRow, V> {
 
     public WritableProperty<E, V> getProperty() {
         return property;
+    }
+
+    public V getValueAt(int rowId) throws Exception {
+        return mtable.db.value(this, rowId);
     }
 }
